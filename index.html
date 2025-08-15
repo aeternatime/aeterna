@@ -1,382 +1,207 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <title>Real de Luxo — Acesso Restrito por Preço Real</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Acesso seletivo a Rolex, Patek, Richard Mille e joias por preço real — sem margens abusivas. Vagas limitadas.">
-  <meta name="robots" content="index,follow">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Aeterna — Real de Luxo</title>
   <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#0b0b0b;color:#e9e9e9;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif}
     :root{
-      --bg:#0a0a0a; --text:#f5f5f5; --muted:#b8b8b8;
-      --gold:#d4af37; --gold-2:#c6a132;
-      --radius:18px; --shadow:0 10px 40px rgba(0,0,0,.35);
+      --bg:#0b0b0b;--card:#141414;--muted:#bdbdbd;--ring:#2a2a2a;
+      --brand:#f1c232;--brand-2:#caa020;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;--pad:clamp(16px,3vw,28px);
+      --maxw:1100px;
+      --h1:clamp(26px,4.5vw,48px);
+      --h2:clamp(20px,3vw,28px);
+      --p:clamp(14px,2.3vw,18px);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:radial-gradient(1200px 600px at 80% -10%, rgba(212,175,55,.08), transparent 60%), var(--bg);
-      color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.45;
-    }
-    a{color:var(--text); text-decoration:none}
-    .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(16px, 3vw, 24px)}
-    .btn{
-      background:linear-gradient(180deg,var(--gold),var(--gold-2)); color:#111; font-weight:800;
-      border:none; border-radius:999px; padding:12px 18px; cursor:pointer;
-      transition:.2s transform,.2s box-shadow; box-shadow:0 6px 18px rgba(212,175,55,.25);
-    }
-    .btn:hover{transform:translateY(-2px); box-shadow:0 10px 26px rgba(212,175,55,.3)}
-    .tag{
-      display:inline-flex; gap:8px; align-items:center; justify-content:center;
-      border:1px solid #222; border-radius:999px; padding:6px 12px; color:var(--muted); font-size:12px;
-    }
-    .title{
-      font-size:clamp(28px,5.5vw,54px); line-height:1.05; margin:10px 0 10px; font-weight:900; letter-spacing:-.02em; text-align:center;
-    }
-    .title strong{color:var(--gold)}
-    .sub{
-      color:#d9d9d9; font-size:clamp(16px,2.6vw,18px); margin:0 auto 22px; max-width:58ch; text-align:center;
-    }
-
-    /* HERO e grid */
-    .hero { padding: clamp(36px, 7vw, 72px) 0 36px; } /* mais respiro */
-    .hero-grid{
-      display:grid; gap: clamp(20px, 4vw, 36px); /* gap maior */
-      grid-template-columns: minmax(0,1fr); /* mobile-first */
-    }
-    .hero-card{
-      background:linear-gradient(180deg,#0d0d0d,#0a0a0a);
-      border:1px solid #1f1f1f; border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);
-      max-width:520px; margin:0 auto;
-    }
-    .pill{
-      display:inline-flex; gap:8px; align-items:center; justify-content:center;
-      border:1px solid #222; border-radius:999px; padding:10px 12px; color:#cfcfcf; font-size:14px; width:100%;
-    }
-    .countdown{font-variant-numeric:tabular-nums; color:var(--gold); font-weight:800}
-
-    .kpis{
-      display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
-      gap: 20px; margin: 28px auto 36px; max-width:900px; /* mais gap/margem */
-    }
-    .kpi{background:linear-gradient(180deg,#0e0e0e,#0b0b0b); border:1px solid #1e1e1e; border-radius:14px; padding:14px; text-align:center}
-    .kpi b{display:block; font-size:clamp(16px, 3vw, 20px)}
-    .muted{color:var(--muted)}
-
-    /* Sections */
-    section{padding:48px 0} /* mais espaço entre blocos */
-    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:20px} /* gap maior */
-    .card{
-      background:linear-gradient(180deg,#0d0d0d,#0a0a0a);
-      border:1px solid #1f1f1f; border-radius:16px; padding:20px
-    }
-    .card h3{margin:0 0 10px; font-size:18px}
-
-    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:20px} /* gap maior */
-    .quote{background:linear-gradient(180deg,#0d0d0d,#0a0a0a); border:1px solid #1f1f1f; border-radius:16px; padding:20px; position:relative}
-    .quote:before{content:"“"; position:absolute; top:-20px; left:12px; font-size:80px; color:#222}
-    .badge{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid #2a2a2a; color:#aaa; font-size:12px}
-
-    /* Form */
-    .form{background:linear-gradient(180deg,#0d0d0d,#0a0a0a); border:1px solid #1f1f1f; border-radius:var(--radius); padding:24px; box-shadow:var(--shadow)}
-    .form h3{margin:0 0 8px}
-    form{display:grid; gap:14px}
-    .row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-    label{font-size:13px;color:#e6e6e6}
-    input,select,textarea{
-      width:100%; background:#0f0f0f; border:1px solid #222; border-radius:12px; color:#eee;
-      padding:12px 12px; font-size:15px; transition:border .2s, box-shadow .2s
-    }
-    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold); box-shadow:0 0 0 3px rgba(212,175,55,.16)}
-    .consent{display:flex; gap:10px; align-items:flex-start; font-size:12px; color:#cfcfcf}
-    .error{display:none;color:#ff4d4f; font-size:12px}
-    .ok{display:none;color:#10b981; font-size:12px}
-    .cta-row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
-    .hint{font-size:12px;color:#ababab}
-
-    /* FAQ + Footer */
-    .faq details{background:linear-gradient(180deg,#0d0d0d,#0a0a0a); border:1px solid #1f1f1f; border-radius:12px; padding:16px 18px; margin-bottom:12px}
-    summary{cursor:pointer; font-weight:700}
-    summary::-webkit-details-marker{display:none}
-    footer{border-top:1px solid #1b1b1b; padding:26px 0; color:#9a9a9a; font-size:13px}
-
-    /* Responsive refinements */
-    @media (min-width: 980px){
-      .hero-grid{grid-template-columns: 1.2fr .8fr}
-      .hero-card{margin:0}
-    }
-    @media (max-width: 980px){
-      .cards{grid-template-columns:1fr 1fr}
-      .grid-2{grid-template-columns:1fr}
-    }
-    @media (max-width: 620px){
-      .cards{grid-template-columns:1fr}
-      .kpis{grid-template-columns:1fr}
-    }
+    img{max-width:100%;height:auto;display:block}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(14px,2vw,18px)}
+    .section{padding:clamp(22px,4vw,48px) var(--pad)}
+    .stack{display:flex;flex-direction:column;gap:clamp(16px,2.4vw,22px)}
+    .center{text-align:center}.muted{color:var(--muted)}
+    .hero{position:relative;background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(241,194,50,.12), transparent 60%),
+      linear-gradient(180deg, rgba(241,194,50,.08), transparent 40%), var(--bg);
+      border-bottom:1px solid #111;}
+    .top-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .badge{font-size:12px;color:#cfcfcf;border:1px solid #2a2a2a;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.02)}
+    .logo{margin:10px auto 8px auto;width:min(200px,70vw)}
+    .hero h1{font-size:var(--h1);line-height:1.1;margin:10px 0 8px;color:#ffd773;text-wrap:balance}
+    .hero p{font-size:var(--p);color:#d8d8d8;max-width:800px;margin:0 auto}
+    .cards{display:grid;gap:16px;margin-top:16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border:1px solid var(--ring);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px;font-size:18px}.card p{margin:0;color:#d3d3d3;font-size:15px}
+    .cta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .btn{appearance:none;border:0;cursor:pointer;border-radius:999px;padding:14px 22px;font-weight:800;
+      background:linear-gradient(180deg,var(--brand),var(--brand-2));color:#111;box-shadow:0 10px 25px rgba(241,194,50,.25);
+      text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}
+    .btn:active{transform:translateY(1px)}
+    .btn-whatsapp{background:linear-gradient(180deg,#25D366,#128C7E);color:#fff;box-shadow:0 10px 25px rgba(36,179,83,.25)}
+    .window{margin-top:8px}
+    .timer{display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--ring);border-radius:999px;
+      padding:10px 14px;background:#0f0f0f;color:#ffd773;font-weight:700}
+    .bullet{margin:0;color:#d8d8d8}.bullet li{margin:6px 0}
+    .form{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border:1px solid var(--ring);border-radius:var(--radius);padding:var(--pad);box-shadow:var(--shadow)}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .label{font-size:13px;color:#eaeaea}
+    input,select,textarea{width:100%;background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:14px 14px;color:#fff;font-size:16px;outline:none;transition:border .15s}
+    input:focus,select:focus,textarea:focus{border-color:#484848}
+    textarea{min-height:110px;resize:vertical}
+    .consent{display:flex;align-items:flex-start;gap:10px}
+    .consent p{margin:0;color:#cfcfcf;font-size:14px;line-height:1.4}
+    .cta-full{margin-top:6px}.fine{font-size:12px;color:#b8b8b8;margin-top:8px}
+    .foot{opacity:.85}
+    @media (min-width:640px){.cards{grid-template-columns:repeat(2,1fr)} .grid{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:900px){.cards{grid-template-columns:repeat(3,1fr)}}
   </style>
 </head>
 <body>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div style="display:grid; place-items:center; gap:14px; text-align:center">
-          <span class="tag"> Acesso exclusivo • Compra | Venda | Troca</span>
+  <header class="hero section">
+    <div class="wrap stack center">
+      <div class="top-badges">
+        <span class="badge">Acesso seletivo</span><span class="badge">Preço real</span><span class="badge">Sem especulação</span>
+      </div>
+      <img class="logo" src="ae-logo.png" alt="Aeterna — Real de Luxo" loading="eager" />
+      <h1>Participe do maior grupo de compra e venda do Brasil</h1>
+      <p>Acesso antecipado a peças raras, negociações discretas e oportunidades que não chegam ao mercado aberto.</p>
 
-          <div class="logo-container" style="margin:0; padding:0; line-height:100; text-align:center;">
-            <!-- Updated logo path to root since assets folder is not present in GitHub repository -->
-            <img src="ae-logo.png" alt="Real de Luxo" style="max-width:400px; height:auto; display:block; margin:0 auto;">
-          </div>
-          
-          
-
-          <h1 class="title"> <strong> Participe do maior grupo de compra e venda do brasil</strong></h1>
-
-          <p class="sub">
-          Acesso antecipado a peças raras, negociações discretas e oportunidades que não chegam ao mercado aberto..
-          </p>
-        </div>
-
-        <div class="kpis" role="list" aria-label="Diferenciais">
-          <div class="kpi" role="listitem"><b>Preço Real</b><span class="muted">Preços até 30% menor em comparação as grandes revendas</span></div>
-          <div class="kpi" role="listitem"><b>100k +</b><span class="muted">Somente peças acima de 100k</span></div>
-          <div class="kpi" role="listitem"><b>Segurança</b><span class="muted">Todos os membros passam por análise rigorosa</span></div>
-        </div>
-
-        <div style="display:grid; place-items:center; gap:14px">
-          <a href="#form" class="btn" aria-label="Solicitar entrada agora">Solicitar entrada agora</a>
-          <span class="hint">Apenas membros aprovados recebem ofertas privadas.</span>
-        </div>
+      <div class="cards">
+        <div class="card"><h3>Preço Real</h3><p>Até 30% menor em comparação às grandes revendas.</p></div>
+        <div class="card"><h3>100k +</h3><p>Somente peças acima de 100k.</p></div>
+        <div class="card"><h3>Segurança</h3><p>Todos os membros passam por análise rigorosa.</p></div>
       </div>
 
-      <!-- CARD COM CONTADOR (MANTIDO) -->
-      <aside class="hero-card" aria-labelledby="urgencia">
-        <h3 id="urgencia" style="margin:0 0 6px">Janela Privada</h3>
-        <p class="muted" style="margin:0 0 12px">Acesso às próximas peças encerra em:</p>
-        <div class="pill">
-          ⏳ <span class="countdown" id="cd-hero">--:--:--</span>
-        </div>
-        <ul class="muted" style="margin:16px 0 0; padding-left:20px">
+      <div class="cta-row">
+        <a href="#form" class="btn">Solicitar entrada agora</a>
+        <a href="https://wa.me/5511911030464?text=Ol%C3%A1%2C%20Tenho%20interesse%20de%20participar%20do%20grupo%0ANome%3A%0AInstagram%2Flinkedin%3A%0AEmpresa%20%2B%20cargo%20%28%20opcional%2C%20essa%20informa%C3%A7%C3%A3o%20pode%20facilitar%20sua%20aprova%C3%A7%C3%A3o%20%29%20%3A%0AModelo%20de%20interesse%3A%20%28%20ex%3A%20busco%20por%20Royal%20Oak%2011500%20%29" target="_blank" class="btn btn-whatsapp">WhatsApp Consultor</a>
+      </div>
+
+      <section class="card window">
+        <h2 class="center" style="margin:0 0 8px;font-size:var(--h2)">Janela Privada</h2>
+        <p class="center muted" style="margin:0 0 8px">Acesso às próximas peças encerra em:</p>
+        <div class="timer"><span>⏳</span><span id="count1">--:--:--</span></div>
+        <ul class="bullet">
           <li>Ofertas antes do público</li>
           <li>Preço real — sem margem escondida</li>
           <li>Atendimento individual</li>
         </ul>
-        <div style="margin-top:16px">
-          <a href="#form" class="btn" style="width:100%; text-align:center">Garantir meu lugar</a>
-        </div>
-        <p class="muted" style="margin:12px 0 0; font-size:12px">* Poucas vagas restantes.</p>
-      </aside>
+        <div class="cta-row"><a href="#form" class="btn">Garantir meu lugar</a></div>
+        <p class="fine">* Poucas vagas restantes.</p>
+      </section>
     </div>
-  </section>
+  </header>
 
-  <!-- Por que é diferente -->
-  <section>
+  <main id="form" class="section">
     <div class="wrap">
-      <div class="cards" role="list" aria-label="Por que é diferente">
-        <div class="card" role="listitem">
-          <h3>Sem o “jogo” do mercado</h3>
-          <p class="muted">Grupos inflacionam preços com margens de 50% a 200%. Nós entregamos <b>preço real</b>, direto, limpo — sem leilão disfarçado.</p>
-        </div>
-        <div class="card" role="listitem">
-          <h3>Acesso antecipado</h3>
-          <p class="muted">As peças mais cobiçadas somem em <b>48h</b>. Quem está na lista recebe antes e decide primeiro.</p>
-        </div>
-        <div class="card" role="listitem">
-          <h3>Sigilo e procedência</h3>
-          <p class="muted">Peças originais, lacradas e autenticadas. Entrega discreta, atendimento um-a-um e segurança total.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Prova social -->
-  <section>
-    <div class="wrap grid-2">
-      <div class="quote">
-        <span class="badge">Depoimento verificado</span>
-        <p style="margin:10px 0 8px; font-size:18px">
-          “Pagava mais caro em grupos ‘fechados’. Aqui fechei um Nautilus lacrado por <b>preço real</b> — sem teatro, sem leilão.”
-        </p>
-        <p class="muted">Membro Aeterna — SP</p>
-      </div>
-      <div class="quote">
-        <span class="badge">Depoimento verificado</span>
-        <p style="margin:10px 0 8px; font-size:18px">
-          “Depois de 3 anos tentando conseguir uma Birken, a aeterna facilitou esse acesso e realizou meu sonho.</b>”
-        </p>
-        <p class="muted">Cliente Privado — RJ</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Formulário -->
-  <section id="form" aria-labelledby="form-title">
-    <div class="wrap grid-2">
-      <div class="form">
-        <h3 id="form-title">Quero meu acesso ao círculo <span style="color:var(--gold)">Real de Luxo</span></h3>
-        <p class="muted" style="margin-top:4px">Preencha para receber <b>ofertas privadas</b> por <b>preço real</b> — sem sobrepreço de intermediários.</p>
-
-        <form id="leadForm"
-      action="https://formbold.com/s/oWyOb"
-      method="POST"
-      novalidate>
-  <!-- campos do formulário permanecem os mesmos -->
-
-          <div class="row">
-            <div>
-              <label for="name">Nome completo</label>
-              <input id="name" name="name" autocomplete="name" required placeholder="Seu nome">
-            </div>
-            <div>
-              <label for="whats">WhatsApp (com DDD)</label>
-              <input id="whats" name="whats" inputmode="tel" autocomplete="tel" required placeholder="(11) 90000-0000" maxlength="20">
-            </div>
+      <section class="form stack">
+        <h2 class="center" style="font-size:var(--h2);margin:0">Entrar agora antes que acabe</h2>
+        <form id="leadForm" action="https://formsubmit.co/pziiin25@gmail.com" method="POST" class="grid" novalidate>
+          <div class="field">
+            <label class="label" for="nome">Nome completo</label>
+            <input id="nome" name="Nome" placeholder="Seu nome" required />
           </div>
-          <div class="row">
-            <div>
-              <label for="city">Cidade/Estado</label>
-              <input id="city" name="city" required placeholder="São Paulo / SP">
-            </div>
-            <div>
-              <label for="interest">Interesse principal</label>
-              <select id="interest" name="interest" required>
-                <option value="" disabled selected>Selecione</option>
-                <option>Rolex</option>
-                <option>Patek Philippe</option>
-                <option>Richard Mille</option>
-                <option>Joias</option>
-                <option>Outro</option>
-              </select>
-            </div>
+          <div class="field">
+            <label class="label" for="whats">WhatsApp (com DDD)</label>
+            <input id="whats" name="WhatsApp" inputmode="tel" placeholder="(11) 90000-0000" required />
           </div>
-          <div>
-            <label for="notes">Modelo de interesse (opcional)</label>
-            <textarea id="notes" name="notes" rows="3" placeholder="Ex.: Daytona 126500LN, Nautilus 5711, RM 11-03"></textarea>
+          <div class="field">
+            <label class="label" for="cidade">Cidade/Estado</label>
+            <input id="cidade" name="Cidade" placeholder="São Paulo / SP" required />
           </div>
-
-          <label class="consent">
-            <input type="checkbox" id="consent" required>
-            <span>Autorizo contato por WhatsApp e concordo em receber ofertas privadas. <span class="muted">(você pode sair quando quiser)</span></span>
-          </label>
-
-          <div class="error" id="err">Revise os campos obrigatórios.</div>
-          <div class="ok" id="ok">Recebido. Nossa equipe vai priorizar seu atendimento.</div>
-
-          <div class="cta-row">
-            <button class="btn" type="submit">Entrar agora antes que acabe</button>
-            <span class="hint">⏳ Janela encerra em <b><span class="countdown" id="cd-form">--:--:--</span></b></span>
+          <div class="field">
+            <label class="label" for="interesse">Interesse principal</label>
+            <select id="interesse" name="Interesse" required>
+              <option value="" disabled selected>Selecione</option>
+              <option>Rolex</option><option>Patek Philippe</option><option>Richard Mille</option>
+              <option>Audemars Piguet</option><option>Hermès</option><option>Van Cleef & Arpels</option><option>Outros</option>
+            </select>
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label class="label" for="modelo">Modelo de interesse (opcional)</label>
+            <textarea id="modelo" name="Modelo" placeholder="Ex.: Daytona 126500LN, Nautilus 5711, RM 11-03"></textarea>
+          </div>
+          <div class="consent" style="grid-column:1/-1">
+            <input type="checkbox" id="ok" name="Consentimento" required style="width:22px;height:22px;margin-top:2px">
+            <p><label for="ok">Autorizo contato por WhatsApp e concordo em receber ofertas privadas (você pode sair quando quiser).</label></p>
+          </div>
+          <div class="cta-full" style="grid-column:1/-1">
+            <button class="btn" type="submit" style="width:100%">Entrar agora antes que acabe</button>
+            <p class="fine"><span>⏳</span> Janela encerra em <span id="count2">--:--:--</span></p>
           </div>
         </form>
-      </div>
-
-      <div>
-        <div class="card">
-          <h3>Garantias de Autenticidade</h3>
-          <ul class="muted" style="margin:10px 0 0; padding-left:20px">
-            <li>Peças originais, lacradas e com documentação</li>
-            <li>Verificação de procedência e histórico</li>
-            <li>Atendimento confidencial e rastreável</li>
+      </section>
+      <section class="section" style="padding-left:0;padding-right:0">
+        <div class="stack">
+          <h2 style="font-size:var(--h2)">Garantias de Autenticidade</h2>
+          <ul class="bullet">
+            <li>Peças originais, lacradas e com documentação.</li>
+            <li>Verificação por especialistas e escrow quando necessário.</li>
+            <li>Negociação discreta e segura.</li>
           </ul>
         </div>
-        <div class="card" style="margin-top:14px">
-          <h3>Como Funciona</h3>
-          <ol class="muted" style="margin:10px 0 0; padding-left:20px">
-            <li>Você aplica para entrar na lista (formulário ao lado)</li>
-            <li>Time verifica e aprova perfis compatíveis</li>
-            <li>Envio de ofertas privadas ou em grupo a depender de sua preferenciapor preço real</li>
-            <li>Fechamento seguro e entrega discreta</li>
-          </ol>
-        </div>
-      </div>
+      </section>
     </div>
-  </section>
+  </main>
 
-  <!-- FAQ -->
-  <section class="faq">
-    <div class="wrap">
-      <h3 style="margin:0 0 12px">Perguntas Frequentes</h3>
-      <details>
-        <summary>Por que vocês conseguem preço real se o mercado infla valores?</summary>
-        <p class="muted">Trabalhamos sem leilão disfarçado e sem atravessadores que colocam margens abusivas. Priorizamos relacionamento direto e curadoria enxuta.</p>
-      </details>
-      <details>
-        <summary>Em quanto tempo eu recebo as ofertas?</summary>
-        <p class="muted">Após aprovação, você entra na fila de prioridade. Os lotes giram rápido — é comum fechar em menos de 48h.</p>
-      </details>
-      <details>
-        <summary>É tudo original e autenticado?</summary>
-        <p class="muted">Sim. Peças originais, lacradas, com documentação e verificação de procedência.</p>
-      </details>
-      <details>
-        <summary>Vocês atendem o Brasil todo?</summary>
-        <p class="muted">Sim. Entrega discreta e segura para todo o país.</p>
-      </details>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-      <div>© <span id="year"></span> Real de Luxo — Todos os direitos reservados.</div>
-      <div>Política de Privacidade • Termos</div>
-    </div>
+  <footer class="section foot">
+    <div class="wrap center muted" style="font-size:13px">© Aeterna — Real de Luxo. Todos os direitos reservados.</div>
   </footer>
 
   <script>
-    // Ano footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Countdown persistente (48h) com localStorage
     (function(){
-      const KEY = 'rl_deadline_ts';
-      const DURATION_MS = 48 * 60 * 60 * 1000; // 48h
-      let deadline = localStorage.getItem(KEY);
-      const now = Date.now();
-      if(!deadline || Number(deadline) < now){
-        deadline = (now + DURATION_MS).toString();
-        localStorage.setItem(KEY, deadline);
+      const KEY="aeterna_deadline";
+      const now=Date.now();
+      let deadline=localStorage.getItem(KEY);
+      if(!deadline){
+        deadline=(now + 48*60*60*1000).toString();
+        localStorage.setItem(KEY,deadline);
       }
-      const targets = [document.getElementById('cd-hero'), document.getElementById('cd-form')];
-      function pad(n){return String(n).padStart(2,'0')}
+      const pad=n=>String(n).padStart(2,"0");
+      function fmt(ms){
+        if(ms<0) return "00:00:00";
+        const h=Math.floor(ms/3.6e6);
+        const m=Math.floor((ms%3.6e6)/6e4);
+        const s=Math.floor((ms%6e4)/1e3);
+        return `${pad(h)}:${pad(m)}:${pad(s)}`;
+      }
       function tick(){
-        const diff = Number(deadline) - Date.now();
-        const clamped = Math.max(diff, 0);
-        const h = Math.floor(clamped/3_600_000);
-        const m = Math.floor((clamped%3_600_000)/60_000);
-        const s = Math.floor((clamped%60_000)/1000);
-        const out = `${pad(h)}:${pad(m)}:${pad(s)}`;
-        targets.forEach(el=>{ if(el) el.textContent = out; });
-        if(clamped === 0) clearInterval(intv);
+        const left=parseInt(deadline,10)-Date.now();
+        const out=fmt(left);
+        const a=document.getElementById("count1");
+        const b=document.getElementById("count2");
+        if(a) a.textContent=out;
+        if(b) b.textContent=out;
+        if(left<=0){
+          const renew=Date.now()+24*60*60*1000;
+          localStorage.setItem(KEY,String(renew));
+        }
       }
-      tick();
-      const intv = setInterval(tick, 1000);
+      tick();setInterval(tick,1000);
     })();
-
-    // Validação simples do formulário (client-side)
-    const form = document.getElementById('leadForm');
-
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      document.getElementById('err').style.display='none';
-      document.getElementById('ok').style.display='none';
-
-      const data = new FormData(form);
-      const required = ['name','whats','city','interest'];
-      const invalid = required.some(k => !String(data.get(k)||'').trim());
-      const consent = document.getElementById('consent').checked;
-
-      if(invalid || !consent){
-        document.getElementById('err').style.display='block';
-        return;
-      }
-
-      // 👉 Integre com seu backend/CRM aqui (ex.: fetch('/api/leads', { method:'POST', body:data }))
-      await new Promise(r=>setTimeout(r,700));
-
-      document.getElementById('ok').style.display='block';
-      form.reset();
-      document.querySelector('#ok').scrollIntoView({behavior:'smooth', block:'center'});
+    document.addEventListener('DOMContentLoaded',()=>{
+      const form=document.getElementById('leadForm');
+      form.addEventListener('submit',(e)=>{
+        const fd=new FormData(form);
+        const data={};
+        fd.forEach((val,key)=>{data[key]=val;});
+        fetch('https://formbold.com/s/oWyOb',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(data)
+        }).catch((err)=>{console.error('FormBold',err);});
+        // não usamos preventDefault, pois queremos enviar para formsubmit.co
+      });
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}
+      });
     });
   </script>
 </body>
